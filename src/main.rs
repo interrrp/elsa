@@ -7,5 +7,5 @@ mod lister;
 
 fn main() {
     let args = args::Args::parse();
-    print_list_dir(&args.dir_path);
+    print_list_dir(&args.dir_path, args.all);
 }

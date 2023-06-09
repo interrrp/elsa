@@ -8,4 +8,8 @@ pub struct Args {
     /// The path to directory to list. If not specified, the current directory is used.
     #[arg(default_value = ".")]
     pub dir_path: String,
+
+    /// Whether to show hidden files (files starting with a dot).
+    #[arg(short, long)]
+    pub all: bool,
 }
