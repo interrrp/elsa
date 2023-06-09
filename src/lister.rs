@@ -14,7 +14,7 @@ pub fn print_list_dir(args: &Args) {
         }
         let file_type = entry.file_type().unwrap();
 
-        if args.emoji {
+        if !args.no_emoji {
             if file_type.is_dir() {
                 print!("📁 ");
             } else {

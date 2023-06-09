@@ -19,7 +19,7 @@ pub struct Args {
     #[arg(short, long)]
     pub newline: bool,
 
-    /// Whether to append an emoji correlating to the file type.
-    #[arg(short, long, default_value = "true")]
-    pub emoji: bool,
+    /// Whether to not append an emoji correlating to the file type.
+    #[arg(long)]
+    pub no_emoji: bool,
 }
