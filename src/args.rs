@@ -15,6 +15,10 @@ pub struct Args {
     #[arg(short, long)]
     pub all: bool,
 
+    /// Whether to append newlines to the end of each filename.
+    #[arg(short, long)]
+    pub newline: bool,
+
     /// Whether to append an emoji correlating to the file type.
     #[arg(short, long, default_value = "true")]
     pub emoji: bool,

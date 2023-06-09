@@ -22,7 +22,12 @@ pub fn print_list_dir(args: &Args) {
                 print!("{} ", emoji_for(&extension));
             }
         }
-        println!("{}", file_name);
+
+        if args.newline {
+            println!("{}", file_name);
+        } else {
+            print!("{}  ", file_name);
+        }
     }
 }
 
