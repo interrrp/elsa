@@ -6,7 +6,9 @@ use crate::args::Args;
 pub fn print_list_dir(args: &Args) {
     let entries = std::fs::read_dir(&args.dir_path).unwrap();
     for entry in entries {
-        let file_name = entry.unwrap().file_name().into_string().unwrap();
+        let entry = entry.unwrap();
+
+        let file_name = entry.file_name().into_string().unwrap();
         if file_name.starts_with(".") && !args.all {
             continue;
         }

@@ -14,4 +14,8 @@ pub struct Args {
     /// Whether to show hidden files (files starting with a dot).
     #[arg(short, long)]
     pub all: bool,
+
+    /// Whether to append an emoji correlating to the file type.
+    #[arg(short, long, default_value = "true")]
+    pub emoji: bool,
 }
