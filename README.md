@@ -16,8 +16,19 @@ $ elsa /path/to/directory
 
 ## Installation
 
-`elsa` still isn't available on any package managers, so you'll have to [build
-it from source](#building-from-source) for now. Sorry!
+### Prerequisites
+
+- Rust
+- Cargo (Rust's package manager)
+
+### Using `cargo install`
+
+```bash
+cargo install elsa-cli
+```
+
+And now you can run `elsa` from anywhere (well, assuming you have `~/.cargo/bin`
+in your `PATH`)!
 
 ## Building from source
 
