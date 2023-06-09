@@ -6,7 +6,11 @@ use crate::args::Args;
 
 /// Print the contents of a directory to stdout.
 pub fn print_list_dir(args: &Args) {
-    let entries = std::fs::read_dir(&args.dir_path).unwrap();
+    // Tilde expansion (e.g. `~` -> `/home/username` or `C:\Users\username` on Windows).
+    let dir_path = shellexpand::tilde(&args.dir_path.to_string_lossy()).to_string();
+    let path_buf = std::path::PathBuf::from(dir_path.as_ref() as &std::ffi::OsStr);
+
+    let entries = std::fs::read_dir(path_buf).unwrap();
     for entry in entries {
         let entry = entry.unwrap();
         print_entry(&entry, &args);
