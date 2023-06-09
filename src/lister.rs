@@ -1,5 +1,7 @@
 //! Contains directory listing logic (see `print_list_dir`).
 
+use owo_colors::OwoColorize;
+
 use crate::args::Args;
 
 /// Print the contents of a directory to stdout.
@@ -9,7 +11,8 @@ pub fn print_list_dir(args: &Args) {
         let entry = entry.unwrap();
 
         let file_name = entry.file_name().into_string().unwrap();
-        if file_name.starts_with(".") && !args.all {
+        let hidden = file_name.starts_with(".");
+        if hidden && !args.all {
             continue;
         }
         let file_type = entry.file_type().unwrap();
@@ -23,10 +26,16 @@ pub fn print_list_dir(args: &Args) {
             }
         }
 
-        if args.newline {
-            println!("{}", file_name);
+        if hidden {
+            print!("{}", file_name.dimmed());
         } else {
-            print!("{}  ", file_name);
+            print!("{}", file_name);
+        }
+
+        if args.newline {
+            println!();
+        } else {
+            print!("  ");
         }
     }
 }
