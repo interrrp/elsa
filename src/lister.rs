@@ -9,34 +9,43 @@ pub fn print_list_dir(args: &Args) {
     let entries = std::fs::read_dir(&args.dir_path).unwrap();
     for entry in entries {
         let entry = entry.unwrap();
+        print_entry(&entry, &args);
+    }
+}
 
-        let file_name = entry.file_name().into_string().unwrap();
-        let hidden = file_name.starts_with(".");
-        if hidden && !args.all {
-            continue;
-        }
-        let file_type = entry.file_type().unwrap();
+/// Print a single directory entry to stdout.
+fn print_entry(entry: &std::fs::DirEntry, args: &Args) {
+    let file_name = entry.file_name();
+    let hidden = file_name.to_string_lossy().starts_with(".");
+    if hidden && !args.all {
+        return;
+    }
 
-        if !args.no_emoji {
-            if file_type.is_dir() {
-                print!("📁 ");
-            } else {
-                let extension = extension(&file_name).unwrap_or("");
-                print!("{} ", emoji_for(&extension));
-            }
-        }
+    let file_type = entry.file_type().unwrap();
 
-        if hidden {
-            print!("{}", file_name.dimmed());
+    if !args.no_emoji {
+        if file_type.is_dir() {
+            print!("📁 ");
         } else {
-            print!("{}", file_name);
+            let extension = entry
+                .path()
+                .extension()
+                .unwrap_or(std::ffi::OsStr::new(".txt"))
+                .to_owned();
+            print!("{} ", emoji_for(extension.to_str().unwrap()));
         }
+    }
 
-        if args.newline {
-            println!();
-        } else {
-            print!("  ");
-        }
+    if hidden {
+        print!("{}", file_name.to_string_lossy().dimmed());
+    } else {
+        print!("{}", file_name.to_string_lossy());
+    }
+
+    if args.newline {
+        println!();
+    } else {
+        print!("  ");
     }
 }
 
@@ -54,11 +63,4 @@ fn emoji_for(extension: &str) -> &'static str {
         "exe" | "msi" | "bat" | "sh" | "cmd" | "app" | "elf" | "so" | "dll" => "🖥️",
         _ => "📄",
     }
-}
-
-/// Return the extension of a file name.
-fn extension(file_name: &str) -> Option<&str> {
-    let mut parts = file_name.split('.');
-    let _ = parts.next();
-    parts.next()
 }
