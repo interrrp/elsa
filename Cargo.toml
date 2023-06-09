@@ -2,8 +2,14 @@
 name = "elsa"
 version = "0.1.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+authors = ["interrrp"]
+description = "A CLI tool to list items in a directory."
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/interrrp/elsa"
+repository = "https://github.com/interrrp/elsa"
+keywords = ["ls", "list", "directory", "folder", "dir"]
+categories = ["command-line-utilities"]
 
 [dependencies]
 clap = { version = "4.3.2", features = ["derive"] }
