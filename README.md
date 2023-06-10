@@ -1,5 +1,8 @@
 # `elsa` - ~~A CLI tool to list items in a directory~~ It's `ls`. Literally in the name.
 
+> ## The files never bothered me anyway 🎶🎶
+### `- Elsa (Frozen), probably`
+
 ## Usage
 
 List the contents of the current directory:
