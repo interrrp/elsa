@@ -4,7 +4,7 @@ use std::path::PathBuf;
 
 use clap::Parser;
 
-/// The command-line arguments.
+/// List all files in a directory.
 #[derive(Parser)]
 pub struct Args {
     /// The path to directory to list. If not specified, the current directory is used.
