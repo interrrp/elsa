@@ -27,7 +27,7 @@ fn print_entry(entry: &std::fs::DirEntry, args: &Args) {
 
     let file_type = entry.file_type().unwrap();
 
-    if !args.no_emoji {
+    if args.emoji {
         if file_type.is_dir() {
             print!("📁 ");
         } else {
